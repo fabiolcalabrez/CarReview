@@ -1,0 +1,493 @@
+/* ===================== GERAL ===================== */
+body {
+  background-color: #F0F0F0;
+  font-family: 'Poppins', Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===================== CABEÇALHO ===================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #222;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 40px;
+}
+
+.logo h1 {
+  color: #E63946;
+  font-size: 2.2em;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.user-info {
+  font-size: 0.9em;
+  color: #E63946;
+  font-weight: 600;
+}
+
+/* ===================== MENU ===================== */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.menu-icon {
+  cursor: pointer;
+  font-size: 26px;
+  transition: color 0.3s ease;
+}
+
+.menu-icon:hover {
+  color: #E63946;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  z-index: 999;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 180px;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ===================== BARRA DE PESQUISA ===================== */
+.search-bar {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1em;
+  border: 2px solid #E63946;
+  border-radius: 25px;
+  outline: none;
+  transition: 0.3s;
+  text-align: center;
+  background-color: #fff;
+}
+
+.search-bar input:focus {
+  border-color: #333;
+  box-shadow: 0 0 8px rgba(230, 57, 70, 0.5);
+}
+
+/* ===================== MARCAS ===================== */
+.brands {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.brand {
+  font-size: 1.4em;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #444, #222);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brand:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #555, #333);
+}
+
+/* ===================== CARTÕES DE CARROS ===================== */
+.car-card {
+  background-color: #ffffff;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.car-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 40px 0 25px 0;
+}
+
+.car-title {
+  font-size: 1.9em;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.car-description {
+  font-size: 1.1em;
+  color: #333;
+  max-width: 750px;
+  margin: 0 auto 30px auto;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  padding: 15px 20px;
+  border-left: 5px solid #E63946;
+  border-radius: 8px;
+  text-align: justify;
+}
+
+.car-table {
+  margin: 0 auto;
+  width: 85%;
+  border-collapse: collapse;
+  font-size: 1em;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+.car-table th,
+.car-table td {
+  border: 1px solid #ddd;
+  padding: 12px 18px;
+  text-align: left;
+}
+
+.car-table th {
+  background-color: #E63946;
+  color: white;
+  font-weight: bold;
+  width: 35%;
+}
+
+.car-table td {
+  background-color: #f4f4f4;
+}
+
+/* ===================== CHAT ===================== */
+#chat-icon {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 55px;
+  height: 55px;
+  background-color: #007bff;
+  color: white;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#chat-box {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 340px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border: 1px solid #ccc;
+  overflow: hidden;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+#chat-box.expanded {
+  width: 420px;
+  height: 540px;
+}
+
+#chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+#chat-content {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* AJUSTE: Marcas no chat uma abaixo da outra */
+#chat-marcas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  align-items: stretch;
+  max-height: 220px; /* define altura visível */
+  overflow-y: auto;   /* ativa o scroll vertical */
+  scrollbar-width: thin; /* Firefox */
+}
+
+#chat-marcas::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-marcas::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+
+#chat-marcas .brand-chat {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+/* Botão de marca no chat */
+.brand-chat {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.3s;
+}
+
+.brand-chat:hover {
+  background-color: #e0e0e0;
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mensagens */
+.msg {
+  margin: 8px 0;
+  max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 0.95em;
+  word-wrap: break-word;
+  display: inline-block;
+  text-align: left;
+}
+
+.msg.esquerda {
+  background-color: #e1e1e1;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.msg.direita {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+  text-align: right;
+  margin-left: auto;
+  margin-right: 0;
+  border-radius: 12px 12px 0 12px;
+}
+
+#chat-input-area {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.95em;
+}
+
+#chat-input-area button {
+  margin-left: 10px;
+  padding: 10px 14px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===================== RESPONSIVO ===================== */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo h1 {
+    font-size: 2em;
+  }
+
+  .header-right {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .search-bar {
+    max-width: 300px;
+  }
+
+  .brands {
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .brand {
+    font-size: 1.2em;
+    padding: 12px 18px;
+  }
+
+  #chat-box {
+    width: 95%;
+    right: 2.5%;
+    height: 80%;
+  }
+
+  #chat-box.expanded {
+    height: 85%;
+  }
+}
+/* ===================== MODELOS NO CHAT ===================== */
+#modelos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  align-items: stretch;
+}
+
+#modelos-lista .modelo-chat {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+/* Botão de modelo no chat */
+.modelo-chat {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.3s;
+}
+
+.modelo-chat:hover {
+  background-color: #e0e0e0;
+}
+
+/* ===================== AVALIAÇÃO DE ESTRELAS ===================== */
+.rating-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.rating-stars {
+  display: inline-flex;
+  position: relative;
+  z-index: 10;
+}
+
+/* Todas as estrelas */
+.rating {
+  font-size: 3.8em;
+  cursor: pointer;
+  color: #ccc;
+  user-select: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+  margin: 0 5px;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Estrelas até a selecionada */
+/* Estrelas até a selecionada */
+.rating.selected {
+  color: #FFD700;
+}
+
+
+/* Hover (visual temporário) */
+.rating.hovered {
+  color: #FFD700;
+  transform: scale(1.2);
+}
+
+.rating:hover {
+  transform: scale(1.2);
+  color: #FFD700;
+}
+
+/* Informações de nota e média */
+.user-rating-info {
+  margin-top: 8px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.user-rating-info span {
+  font-weight: bold;
+  color: #E63946;
+}
+.rating.selected.hovered {
+  transform: scale(1.2);
+}

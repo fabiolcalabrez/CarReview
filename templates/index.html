@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarReview</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="{{ url_for('static', filename='auth.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='chat.js') }}"></script>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <h1>Car Review</h1>
+    </div>
+    <div class="header-right">
+      <span id="user-info" class="user-info"></span>
+      <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    </div>
+    <div id="menu" class="menu">
+      <button id="login-button">Login com Google</button>
+      <button id="logout-button" style="display:none;">Logout</button>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Pesquisar carro..." onkeyup="searchCars()">
+  </div>
+
+  <div class="brands">
+    <a href="/marca/audi" class="brand">Audi</a>
+    <a href="/marca/bmw" class="brand">BMW</a>
+    <a href="/marca/chevrolet" class="brand">Chevrolet</a>
+    <a href="/marca/fiat" class="brand">Fiat</a>
+    <a href="/marca/ford" class="brand">Ford</a>
+    <a href="/marca/honda" class="brand">Honda</a>
+    <a href="/marca/hyundai" class="brand">Hyundai</a>
+    <a href="/marca/jeep" class="brand">Jeep</a>
+    <a href="/marca/land-rover" class="brand">Land Rover</a>
+    <a href="/marca/mercedes-benz" class="brand">Mercedes Benz</a>
+    <a href="/marca/nissan" class="brand">Nissan</a>
+    <a href="/marca/porsche" class="brand">Porsche</a>
+    <a href="/marca/toyota" class="brand">Toyota</a>
+    <a href="/marca/volkswagen" class="brand">Volkswagen</a>
+  </div>
+
+  <div id="chat-icon" onclick="toggleChat()">💬</div>
+
+  <div id="chat-box" style="display: none;">
+    <div id="chat-header">
+      <strong>Chat de Marcas</strong>
+      <span onclick="toggleChat()" style="cursor:pointer;">✖</span>
+    </div>
+    <div id="chat-content">
+      <div id="chat-marcas"></div>
+      <div id="chat-modelos" style="display:none;">
+        <button onclick="voltarMarcas()" style="margin-bottom: 10px;">⬅ Voltar</button>
+        <div id="modelos-lista"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    function searchCars() {
+      const input = document.getElementById("search-input").value.toLowerCase();
+      const brands = document.querySelectorAll(".brand");
+      brands.forEach(brand => {
+        brand.style.display = brand.textContent.toLowerCase().includes(input) ? "block" : "none";
+      });
+    }
+
+    const marcas = {
+      "Audi": ["A3", "Q5", "RS5"],
+      "BMW": ["320i", "X1", "X6"],
+      "Chevrolet": ["Onix", "Tracker", "S10"],
+      "Fiat": ["Argo", "Cronos", "Toro"],
+      "Ford": ["Ka", "Ranger", "Mustang"],
+      "Honda": ["Civic", "HR-V", "Fit"],
+      "Hyundai": ["HB20", "Creta", "Tucson"],
+      "Jeep": ["Renegade", "Compass", "Wrangler"],
+      "Land Rover": ["Evoque", "Discovery", "Defender"],
+      "Mercedes Benz": ["Classe A", "GLA", "GLE"],
+      "Nissan": ["Kicks", "Sentra", "Frontier"],
+      "Porsche": ["Macan", "Cayenne", "911"],
+      "Toyota": ["Corolla", "Corolla Cross", "Hilux"],
+      "Volkswagen": ["Polo", "T-Cross", "Amarok"]
+    };
+
+    function preencherMarcas() {
+      const div = document.getElementById("chat-marcas");
+      div.innerHTML = "";
+      Object.keys(marcas).forEach(marca => {
+        const btn = document.createElement("button");
+        btn.textContent = marca;
+        btn.className = "brand-chat";
+        btn.onclick = () => mostrarModelos(marca);
+        div.appendChild(btn);
+      });
+      document.getElementById("chat-modelos").style.display = "none";
+      div.style.display = "block";
+    }
+
+    function mostrarModelos(marca) {
+      document.getElementById("chat-marcas").style.display = "none";
+      document.getElementById("chat-modelos").style.display = "block";
+      const container = document.getElementById("modelos-lista");
+      container.innerHTML = `<h4>${marca}</h4>`;
+      marcas[marca].forEach(modelo => {
+        const btn = document.createElement("button");
+        btn.textContent = modelo;
+        btn.className = "brand-chat";
+        btn.onclick = () => abrirChatModelo(marca, modelo);  // Chamando função correta de chat.js
+        container.appendChild(btn);
+      });
+    }
+
+    function voltarMarcas() {
+      document.getElementById("chat-modelos").style.display = "none";
+      document.getElementById("chat-marcas").style.display = "block";
+    }
+
+    function toggleChat() {
+      const chatBox = document.getElementById("chat-box");
+      const chatContent = document.getElementById("chat-content");
+      const isOpen = chatBox.style.display === "block";
+
+      if (isOpen) {
+        chatBox.style.display = "none";
+        chatBox.classList.remove("expanded");
+        chatContent.innerHTML = `
+          <div id="chat-marcas"></div>
+          <div id="chat-modelos" style="display:none;">
+            <button onclick="voltarMarcas()" style="margin-bottom: 10px;">⬅ Voltar</button>
+            <div id="modelos-lista"></div>
+          </div>
+        `;
+        preencherMarcas();
+      } else {
+        chatBox.style.display = "block";
+        chatBox.classList.remove("expanded");
+        preencherMarcas();
+      }
+    }
+  </script>
+</body>
+</html>
